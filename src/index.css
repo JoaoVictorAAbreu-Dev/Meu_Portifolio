@@ -34,6 +34,14 @@ a {
   text-decoration: none;
 }
 
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(61, 217, 255, 0.9);
+  outline-offset: 3px;
+}
+
 button,
 input,
 textarea {
@@ -88,6 +96,10 @@ textarea {
   .field-shell input,
   .field-shell textarea {
     @apply w-full rounded-2xl border border-slate-300 bg-white/80 px-4 py-3 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-brand-500/50 focus:ring-2 focus:ring-brand-500/15 dark:border-white/10 dark:bg-slate-950/50 dark:text-white dark:placeholder:text-slate-500;
+  }
+
+  .sr-only {
+    @apply absolute h-px w-px overflow-hidden whitespace-nowrap border-0 p-0 [-webkit-clip-path:inset(50%)] [clip-path:inset(50%)] [-webkit-clip:rect(0,0,0,0)] [clip:rect(0,0,0,0)] [margin:-1px];
   }
 }
 

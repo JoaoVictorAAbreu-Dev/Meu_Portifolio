@@ -40,7 +40,7 @@ export const seo = {
   description:
     "Portfolio profissional de Joao Victor Alves de Abreu, estudante de Ciencia da Computacao na FIAP com foco em Backend Java, C#, .NET, APIs REST, banco de dados e arquitetura de software.",
   image: "/images/profile.jpg",
-  url: "https://joaovictoraabreu.dev",
+  url: "https://joaovictoraabreu-dev.github.io/site-portifolio",
 };
 
 export const navItems: NavItem[] = [

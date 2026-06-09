@@ -1,7 +1,8 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type { FormEvent } from "react";
 import { FiArrowRight, FiDownload, FiGithub, FiLinkedin, FiMapPin, FiZap } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { ExternalLink } from "../components/ExternalLink";
 import { ProfilePhoto } from "../components/ProfilePhoto";
 import { ProjectVisual } from "../components/ProjectVisual";
 import { SectionHeading } from "../components/SectionHeading";
@@ -23,92 +24,85 @@ import { buildMailtoLink } from "../services/contact";
 import { usePageMeta } from "../utils/meta";
 
 export function HomePage() {
+  const shouldReduceMotion = useReducedMotion();
+
   usePageMeta({
     title: "Joao Victor Alves de Abreu | Software Engineering Student",
     description:
       "Portfolio profissional com foco em backend Java, C#, .NET, APIs REST, banco de dados e arquitetura de software.",
   });
 
+  const reveal = (delay = 0) =>
+    shouldReduceMotion
+      ? { initial: false }
+      : {
+          initial: { opacity: 0, y: 16 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.45, delay },
+        };
+
   return (
     <MainLayout>
-      <section className="relative mx-auto grid max-w-7xl gap-14 overflow-hidden px-5 pb-20 pt-16 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:pb-28 lg:pt-20">
+      <section
+        aria-labelledby="hero-title"
+        className="relative mx-auto grid max-w-7xl gap-14 overflow-hidden px-5 pb-20 pt-16 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:pb-28 lg:pt-20"
+      >
         <div className="hero-orb right-[4%] top-[6%] h-40 w-40 bg-brand-500/20" />
         <div className="hero-orb left-[8%] top-[32%] h-24 w-24 bg-cyan-300/25" />
         <div className="flex flex-col justify-center">
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            className="eyebrow"
-          >
+          <motion.p {...reveal()} className="eyebrow">
             Software portfolio orientado a contratacao
           </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.02 }}
-            className="mt-4 flex flex-wrap gap-3"
-          >
+          <motion.div {...reveal(0.02)} className="mt-4 flex flex-wrap gap-3">
             <span className="inline-flex items-center gap-2 rounded-full border border-brand-500/20 bg-white/80 px-4 py-2 text-sm text-slate-700 dark:border-white/10 dark:bg-white/[0.05] dark:text-slate-200">
-              <FiZap className="text-brand-600 dark:text-cyan-300" />
+              <FiZap aria-hidden="true" className="text-brand-600 dark:text-cyan-300" />
               Foco em backend e arquitetura
             </span>
             <span className="inline-flex items-center gap-2 rounded-full border border-brand-500/20 bg-white/80 px-4 py-2 text-sm text-slate-700 dark:border-white/10 dark:bg-white/[0.05] dark:text-slate-200">
-              <FiMapPin className="text-brand-600 dark:text-cyan-300" />
+              <FiMapPin aria-hidden="true" className="text-brand-600 dark:text-cyan-300" />
               Sao Paulo, Brasil
             </span>
           </motion.div>
           <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.05 }}
+            {...reveal(0.05)}
+            id="hero-title"
             className="mt-5 max-w-4xl text-5xl font-semibold tracking-tight text-slate-950 dark:text-white sm:text-6xl"
           >
             Joao Victor Alves de Abreu
           </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.1 }}
-            className="mt-6 text-xl text-slate-700 dark:text-slate-200 sm:text-2xl"
-          >
+          <motion.p {...reveal(0.1)} className="mt-6 text-xl text-slate-700 dark:text-slate-200 sm:text-2xl">
             Software Engineering Student | Backend Developer
           </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.15 }}
-            className="mt-6 max-w-2xl text-base leading-8 text-slate-600 dark:text-slate-300"
-          >
+          <motion.p {...reveal(0.15)} className="mt-6 max-w-2xl text-base leading-8 text-slate-600 dark:text-slate-300">
             Desenvolvendo solucoes com foco em Java, C#, .NET, APIs REST e arquitetura de software, com atencao especial a organizacao, clareza tecnica e evolucao consistente para ambientes profissionais.
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.2 }}
-            className="mt-10 flex flex-wrap gap-4"
-          >
-            <a href="https://github.com/JoaoVictorAAbreu-Dev" target="_blank" rel="noreferrer" className="btn-primary">
+          <motion.div {...reveal(0.2)} className="mt-10 flex flex-wrap gap-4">
+            <ExternalLink
+              href="https://github.com/JoaoVictorAAbreu-Dev"
+              className="btn-primary"
+              aria-label="Abrir perfil do GitHub de Joao Victor Alves de Abreu em nova guia"
+              showNewTabText
+            >
               <FiGithub />
               GitHub
-            </a>
-            <a
+            </ExternalLink>
+            <ExternalLink
               href="https://www.linkedin.com/in/jo%C3%A3ovictoraabreu"
-              target="_blank"
-              rel="noreferrer"
               className="btn-secondary"
+              aria-label="Abrir perfil do LinkedIn de Joao Victor Alves de Abreu em nova guia"
+              showNewTabText
             >
               <FiLinkedin />
               LinkedIn
-            </a>
+            </ExternalLink>
             <a href="/curriculo-joao-victor.pdf" download className="btn-secondary">
               <FiDownload />
-              Curriculo
+              Baixar curriculo
             </a>
             <a href="#projetos" className="btn-secondary">
               <FiArrowRight />
-              Projetos
+              Ver projetos
             </a>
           </motion.div>
 
@@ -116,9 +110,7 @@ export function HomePage() {
             {heroMetrics.map((item, index) => (
               <motion.article
                 key={item.label}
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.08 * index }}
+                {...reveal(0.08 * index)}
                 className="glass-card"
               >
                 <p className="text-sm text-slate-500 dark:text-slate-400">{item.label}</p>
@@ -150,8 +142,9 @@ export function HomePage() {
         </div>
       </section>
 
-      <section id="sobre" className="section-shell">
+      <section id="sobre" aria-labelledby="sobre-heading" className="section-shell">
         <SectionHeading
+          id="sobre-heading"
           eyebrow="Sobre mim"
           title="Portfolio pensado para mostrar maturidade tecnica, capacidade analitica e potencial real de crescimento."
           description="A proposta aqui nao e apenas apresentar projetos, mas comunicar criterio de engenharia, clareza de raciocinio e direcao profissional para times backend."
@@ -178,8 +171,9 @@ export function HomePage() {
         </div>
       </section>
 
-      <section id="stack" className="section-shell">
+      <section id="stack" aria-labelledby="stack-heading" className="section-shell">
         <SectionHeading
+          id="stack-heading"
           eyebrow="Stack tecnologica"
           title="Competencias organizadas por area, com foco em backend e crescimento profissional consistente."
         />
@@ -212,15 +206,20 @@ export function HomePage() {
         </div>
       </section>
 
-      <section id="projetos" className="section-shell">
+      <section id="projetos" aria-labelledby="projetos-heading" className="section-shell">
         <SectionHeading
+          id="projetos-heading"
           eyebrow="Projetos"
           title="Projetos apresentados como experiencia de engenharia, nao apenas como lista de repositorios."
           description="Cada item possui narrativa de problema, arquitetura e aprendizado. Os estudos de caso detalhados ficam em paginas individuais."
         />
         <div className="mt-12 grid gap-6">
           {projects.map((project) => (
-            <article key={project.slug} className="grid gap-6 rounded-[2rem] border border-slate-200 bg-white/80 p-6 shadow-[0_18px_60px_rgba(148,163,184,0.15)] dark:border-white/10 dark:bg-white/[0.03] lg:grid-cols-[0.72fr_1.28fr]">
+            <article
+              key={project.slug}
+              aria-labelledby={`${project.slug}-title`}
+              className="grid gap-6 rounded-[2rem] border border-slate-200 bg-white/80 p-6 shadow-[0_18px_60px_rgba(148,163,184,0.15)] dark:border-white/10 dark:bg-white/[0.03] lg:grid-cols-[0.72fr_1.28fr]"
+            >
               <ProjectVisual label={project.imageLabel} />
               <div>
                 <div className="flex flex-wrap items-center gap-3">
@@ -229,7 +228,9 @@ export function HomePage() {
                     {project.shortTitle}
                   </span>
                 </div>
-                <h3 className="mt-4 text-3xl font-semibold text-slate-950 dark:text-white">{project.title}</h3>
+                <h3 id={`${project.slug}-title`} className="mt-4 text-3xl font-semibold text-slate-950 dark:text-white">
+                  {project.title}
+                </h3>
                 <p className="mt-4 text-base leading-8 text-slate-600 dark:text-slate-300">{project.description}</p>
 
                 <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -254,32 +255,42 @@ export function HomePage() {
                 <div className="mt-6 grid gap-4 md:grid-cols-2">
                   <div>
                     <p className="text-sm font-semibold text-slate-950 dark:text-white">Desafios enfrentados</p>
-                    <ul className="mt-3 space-y-2 text-sm leading-7 text-slate-600 dark:text-slate-300">
+                    <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-7 text-slate-600 marker:text-brand-500 dark:text-slate-300 dark:marker:text-cyan-300">
                       {project.challenges.map((item) => (
-                        <li key={item}>- {item}</li>
+                        <li key={item}>{item}</li>
                       ))}
                     </ul>
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-slate-950 dark:text-white">Aprendizados</p>
-                    <ul className="mt-3 space-y-2 text-sm leading-7 text-slate-600 dark:text-slate-300">
+                    <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-7 text-slate-600 marker:text-brand-500 dark:text-slate-300 dark:marker:text-cyan-300">
                       {project.learnings.map((item) => (
-                        <li key={item}>- {item}</li>
+                        <li key={item}>{item}</li>
                       ))}
                     </ul>
                   </div>
                 </div>
 
                 <div className="mt-8 flex flex-wrap gap-4">
-                  <a href={project.githubUrl} target="_blank" rel="noreferrer" className="btn-secondary">
+                  <ExternalLink
+                    href={project.githubUrl}
+                    className="btn-secondary"
+                    aria-label={`Abrir repositorio ${project.title} no GitHub em nova guia`}
+                    showNewTabText
+                  >
                     <FiGithub />
                     GitHub
-                  </a>
+                  </ExternalLink>
                   {project.demoUrl ? (
-                    <a href={project.demoUrl} target="_blank" rel="noreferrer" className="btn-secondary">
+                    <ExternalLink
+                      href={project.demoUrl}
+                      className="btn-secondary"
+                      aria-label={`Abrir demonstracao do projeto ${project.title} em nova guia`}
+                      showNewTabText
+                    >
                       <FiArrowRight />
                       Demo
-                    </a>
+                    </ExternalLink>
                   ) : null}
                   <Link to={`/projetos/${project.slug}`} className="btn-primary">
                     Ver estudo de caso
@@ -291,8 +302,9 @@ export function HomePage() {
         </div>
       </section>
 
-      <section id="github" className="section-shell">
+      <section id="github" aria-labelledby="github-heading" className="section-shell">
         <SectionHeading
+          id="github-heading"
           eyebrow="GitHub dashboard"
           title="Leitura rapida do meu perfil tecnico e do tipo de repositorio que venho construindo."
         />
@@ -312,47 +324,51 @@ export function HomePage() {
             </p>
             <div className="mt-6 space-y-4">
               {featuredRepositories.map((repo) => (
-                <a
+                <ExternalLink
                   key={repo.name}
                   href={repo.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`Abrir repositorio ${repo.name} no GitHub`}
+                  aria-label={`Abrir repositorio ${repo.name} no GitHub em nova guia`}
                   className="block rounded-[1.4rem] border border-slate-200/80 bg-white/70 p-5 transition hover:border-brand-500/30 dark:border-white/10 dark:bg-white/[0.03]"
+                  hideIcon
+                  showNewTabText
                 >
                   <div className="flex items-center justify-between gap-4">
                     <div>
                       <p className="font-semibold text-slate-950 dark:text-white">{repo.name}</p>
                       <p className="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">{repo.note}</p>
                     </div>
-                    <FiArrowRight className="shrink-0 text-brand-600 dark:text-cyan-300" />
+                    <FiArrowRight aria-hidden="true" className="shrink-0 text-brand-600 dark:text-cyan-300" />
                   </div>
-                </a>
+                </ExternalLink>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section id="jornada" className="section-shell">
+      <section id="jornada" aria-labelledby="jornada-heading" className="section-shell">
         <SectionHeading
+          id="jornada-heading"
           eyebrow="Jornada e experiencia"
           title="Linha do tempo com marcos de aprendizado, desafios academicos e direcao tecnica."
         />
-        <div className="mt-12 space-y-5">
+        <ol className="mt-12 space-y-5">
           {timeline.map((item) => (
-            <article key={item.title} className="glass-card relative overflow-hidden pl-8">
+            <li key={item.title} className="list-none">
+              <article className="glass-card relative overflow-hidden pl-8">
               <div className="absolute left-0 top-0 h-full w-1 rounded-full bg-gradient-to-b from-brand-600 to-cyan-300" />
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-600 dark:text-cyan-300">{item.period}</p>
               <h3 className="mt-3 text-2xl font-semibold text-slate-950 dark:text-white">{item.title}</h3>
               <p className="mt-3 text-base leading-8 text-slate-600 dark:text-slate-300">{item.description}</p>
-            </article>
+              </article>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
-      <section id="certificacoes" className="section-shell">
+      <section id="certificacoes" aria-labelledby="certificacoes-heading" className="section-shell">
         <SectionHeading
+          id="certificacoes-heading"
           eyebrow="Certificacoes e cursos"
           title="Estrutura preparada para ampliar evidencias formais de aprendizado."
         />
@@ -360,9 +376,9 @@ export function HomePage() {
           {certifications.map((group) => (
             <article key={group.provider} className="glass-card">
               <h3 className="text-xl font-semibold text-slate-950 dark:text-white">{group.provider}</h3>
-              <ul className="mt-4 space-y-2 text-sm leading-7 text-slate-600 dark:text-slate-300">
+              <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-7 text-slate-600 marker:text-brand-500 dark:text-slate-300 dark:marker:text-cyan-300">
                 {group.items.map((item) => (
-                  <li key={item}>- {item}</li>
+                  <li key={item}>{item}</li>
                 ))}
               </ul>
             </article>
@@ -370,13 +386,14 @@ export function HomePage() {
         </div>
       </section>
 
-      <section id="contato" className="section-shell">
+      <section id="contato" aria-labelledby="contato-heading" className="section-shell">
         <SectionHeading
+          id="contato-heading"
           eyebrow="Contato"
           title="Canal direto para recrutadores, networking tecnico e oportunidades de estagio."
         />
         <div className="mt-12 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
-          <div className="grid gap-4">
+          <address className="grid gap-4 not-italic">
             {contactLinks.map(({ icon: Icon, label, value, href, external }) => (
               <a
                 key={label}
@@ -384,9 +401,10 @@ export function HomePage() {
                 target={external ? "_blank" : undefined}
                 rel={external ? "noreferrer" : undefined}
                 className="glass-card flex items-center gap-4"
+                aria-label={external ? `${label}: ${value}. Abre em nova guia` : `${label}: ${value}`}
               >
                 <div className="icon-badge">
-                  <Icon size={18} />
+                  <Icon size={18} aria-hidden="true" />
                 </div>
                 <div>
                   <p className="text-sm text-slate-500 dark:text-slate-400">{label}</p>
@@ -398,7 +416,7 @@ export function HomePage() {
               <FiDownload />
               Baixar curriculo
             </a>
-          </div>
+          </address>
 
           <ContactForm />
         </div>
@@ -420,40 +438,54 @@ function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="glass-card">
+    <form onSubmit={handleSubmit} className="glass-card" aria-describedby="contact-form-help">
+      <p id="contact-form-help" className="text-sm leading-7 text-slate-600 dark:text-slate-300">
+        Este formulario abre seu cliente de email padrao com os dados preenchidos. Nenhuma informacao e armazenada no site.
+      </p>
       <div className="grid gap-5 sm:grid-cols-2">
-        <label className="field-shell">
+        <label htmlFor="contact-name" className="field-shell">
           <span>Nome</span>
-          <input name="name" required placeholder="Seu nome" aria-label="Seu nome" />
+          <input
+            id="contact-name"
+            name="name"
+            required
+            autoComplete="name"
+            minLength={2}
+            placeholder="Seu nome"
+          />
         </label>
-        <label className="field-shell">
+        <label htmlFor="contact-email" className="field-shell">
           <span>Email</span>
           <input
+            id="contact-email"
             name="email"
             type="email"
             required
+            autoComplete="email"
             placeholder="seuemail@dominio.com"
-            aria-label="Seu email"
           />
         </label>
       </div>
-      <label className="field-shell mt-5">
+      <label htmlFor="contact-subject" className="field-shell mt-5">
         <span>Assunto</span>
         <input
+          id="contact-subject"
           name="subject"
           required
+          minLength={4}
           placeholder="Assunto da mensagem"
-          aria-label="Assunto da mensagem"
         />
       </label>
-      <label className="field-shell mt-5">
+      <label htmlFor="contact-message" className="field-shell mt-5">
         <span>Mensagem</span>
         <textarea
+          id="contact-message"
           name="message"
           rows={7}
           required
+          minLength={12}
+          autoComplete="off"
           placeholder="Descreva sua oportunidade ou contexto."
-          aria-label="Mensagem"
         />
       </label>
       <button type="submit" className="btn-primary mt-8">

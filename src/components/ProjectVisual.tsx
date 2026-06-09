@@ -4,7 +4,10 @@ type ProjectVisualProps = {
 
 export function ProjectVisual({ label }: ProjectVisualProps) {
   return (
-    <div className="relative overflow-hidden rounded-[1.7rem] border border-slate-200 bg-[linear-gradient(180deg,rgba(248,250,252,0.98),rgba(226,232,240,0.88))] p-5 shadow-[0_20px_50px_rgba(148,163,184,0.12)] dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(15,23,42,0.96),rgba(8,15,30,0.96))]">
+    <div
+      className="relative overflow-hidden rounded-[1.7rem] border border-slate-200 bg-[linear-gradient(180deg,rgba(248,250,252,0.98),rgba(226,232,240,0.88))] p-5 shadow-[0_20px_50px_rgba(148,163,184,0.12)] dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(15,23,42,0.96),rgba(8,15,30,0.96))]"
+      aria-hidden="true"
+    >
       <div className="absolute right-0 top-0 h-28 w-28 rounded-full bg-brand-500/15 blur-3xl dark:bg-cyan-400/15" />
       <div className="absolute bottom-0 left-0 h-24 w-24 rounded-full bg-cyan-300/25 blur-3xl dark:bg-brand-500/15" />
       <div className="relative">

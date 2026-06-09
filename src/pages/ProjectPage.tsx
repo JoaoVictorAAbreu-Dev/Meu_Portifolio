@@ -1,5 +1,6 @@
 import { FiArrowLeft, FiArrowUpRight, FiGithub } from "react-icons/fi";
 import { Link, useParams } from "react-router-dom";
+import { ExternalLink } from "../components/ExternalLink";
 import { ProjectVisual } from "../components/ProjectVisual";
 import { SectionHeading } from "../components/SectionHeading";
 import { projects } from "../data/portfolio";
@@ -59,22 +60,33 @@ export function ProjectPage() {
               ))}
             </div>
             <div className="mt-8 flex flex-wrap gap-4">
-              <a href={project.githubUrl} target="_blank" rel="noreferrer" className="btn-secondary">
+              <ExternalLink
+                href={project.githubUrl}
+                className="btn-secondary"
+                aria-label={`Abrir repositorio ${project.title} no GitHub em nova guia`}
+                showNewTabText
+              >
                 <FiGithub />
                 GitHub
-              </a>
+              </ExternalLink>
               {project.demoUrl ? (
-                <a href={project.demoUrl} target="_blank" rel="noreferrer" className="btn-primary">
+                <ExternalLink
+                  href={project.demoUrl}
+                  className="btn-primary"
+                  aria-label={`Abrir demonstracao do projeto ${project.title} em nova guia`}
+                  showNewTabText
+                >
                   <FiArrowUpRight />
                   Demo
-                </a>
+                </ExternalLink>
               ) : null}
             </div>
           </div>
         </div>
 
-        <section className="mt-16">
+        <section aria-labelledby="case-study-heading" className="mt-16">
           <SectionHeading
+            id="case-study-heading"
             eyebrow="Estudo de caso"
             title="Contexto, problema, solucao e direcionamento tecnico."
           />
@@ -98,9 +110,9 @@ function CaseCard({ title, content }: { title: string; content: string[] }) {
   return (
     <article className="glass-card">
       <h2 className="text-2xl font-semibold text-slate-950 dark:text-white">{title}</h2>
-      <ul className="mt-4 space-y-3 text-base leading-8 text-slate-600 dark:text-slate-300">
+      <ul className="mt-4 list-disc space-y-3 pl-5 text-base leading-8 text-slate-600 marker:text-brand-500 dark:text-slate-300 dark:marker:text-cyan-300">
         {content.map((item) => (
-          <li key={item}>- {item}</li>
+          <li key={item}>{item}</li>
         ))}
       </ul>
     </article>

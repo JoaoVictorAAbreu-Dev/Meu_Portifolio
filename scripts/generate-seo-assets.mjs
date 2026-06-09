@@ -1,6 +1,8 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 
-const siteUrl = (process.env.VITE_SITE_URL || "https://joaovictoraabreu.dev").replace(/\/$/, "");
+const siteUrl = (
+  process.env.VITE_SITE_URL || "https://joaovictoraabreu-dev.github.io/site-portifolio"
+).replace(/\/$/, "");
 const pages = [
   "",
   "/#/projetos/motiva-orion",

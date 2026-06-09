@@ -14,7 +14,9 @@ export function MainLayout({ children }: { children: ReactNode }) {
       <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(rgba(148,163,184,0.10)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.10)_1px,transparent_1px)] bg-[length:64px_64px] opacity-[0.18] dark:opacity-[0.08]" />
       <div className="relative">
         <Header />
-        <main id="conteudo-principal">{children}</main>
+        <main id="conteudo-principal" tabIndex={-1}>
+          {children}
+        </main>
         <Footer />
       </div>
     </div>

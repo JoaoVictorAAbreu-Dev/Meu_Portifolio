@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
 import { navItems } from "../data/portfolio";
@@ -6,6 +6,22 @@ import { ThemeToggle } from "./ThemeToggle";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) {
+      return undefined;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/85 backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/80">
@@ -24,7 +40,7 @@ export function Header() {
           </div>
         </NavLink>
 
-        <nav className="hidden items-center gap-7 md:flex">
+        <nav className="hidden items-center gap-7 md:flex" aria-label="Navegacao principal">
           {navItems.map((item) => (
             <a
               key={item.href}
@@ -42,7 +58,7 @@ export function Header() {
             type="button"
             className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300/70 text-slate-900 dark:border-white/10 dark:text-white md:hidden"
             onClick={() => setOpen((current) => !current)}
-            aria-label="Abrir menu"
+            aria-label={open ? "Fechar menu" : "Abrir menu"}
             aria-expanded={open}
             aria-controls="mobile-navigation"
           >
@@ -54,6 +70,7 @@ export function Header() {
       {open ? (
         <div
           id="mobile-navigation"
+          aria-label="Navegacao mobile"
           className="border-t border-slate-200/70 px-5 py-4 dark:border-white/10 md:hidden"
         >
           <div className="flex flex-col gap-2">

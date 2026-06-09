@@ -1,8 +1,28 @@
 import { execSync } from "node:child_process";
 
-const repositoryName =
-  process.env.GITHUB_REPOSITORY_NAME || process.env.npm_package_name || "site-portifolio";
-const repositoryOwner = process.env.GITHUB_REPOSITORY_OWNER || "JoaoVictorAAbreu-Dev";
+function resolveRepositoryName() {
+  if (process.env.GITHUB_REPOSITORY_NAME) {
+    return process.env.GITHUB_REPOSITORY_NAME.toLowerCase();
+  }
+
+  try {
+    const remote = execSync("git config --get remote.origin.url", {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
+    const normalizedRemote = remote.replace(":", "/");
+    const match = normalizedRemote.match(/\/([^/]+?)(?:\.git)?$/);
+
+    if (match?.[1]) {
+      return match[1].toLowerCase();
+    }
+  } catch {}
+
+  return "site-portifolio";
+}
+
+const repositoryName = resolveRepositoryName();
+const repositoryOwner = (process.env.GITHUB_REPOSITORY_OWNER || "JoaoVictorAAbreu-Dev").toLowerCase();
 
 const env = {
   ...process.env,

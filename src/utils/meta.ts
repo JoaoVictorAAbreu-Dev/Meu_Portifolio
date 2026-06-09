@@ -37,7 +37,10 @@ function upsertLink(selector: string, attributes: Record<string, string>) {
 export function usePageMeta({ title, description, path = "/" }: MetaOptions) {
   useEffect(() => {
     const baseSiteUrl = siteConfig.siteUrl.replace(/\/$/, "");
-    const absoluteUrl = `${baseSiteUrl}${path}`;
+    const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+    const absoluteUrl = window.location.hash.startsWith("#/")
+      ? `${baseSiteUrl}/#${normalizedPath}`
+      : `${baseSiteUrl}${normalizedPath}`;
     const imageUrl = `${baseSiteUrl}${seo.image}`;
 
     document.title = title;
@@ -62,6 +65,16 @@ export function usePageMeta({ title, description, path = "/" }: MetaOptions) {
       content: "website",
     });
 
+    upsertMeta('meta[property="og:site_name"]', {
+      property: "og:site_name",
+      content: "Joao Victor Alves de Abreu Portfolio",
+    });
+
+    upsertMeta('meta[property="og:locale"]', {
+      property: "og:locale",
+      content: "pt_BR",
+    });
+
     upsertMeta('meta[property="og:url"]', {
       property: "og:url",
       content: absoluteUrl,
@@ -77,9 +90,19 @@ export function usePageMeta({ title, description, path = "/" }: MetaOptions) {
       content: title,
     });
 
+    upsertMeta('meta[name="twitter:card"]', {
+      name: "twitter:card",
+      content: "summary_large_image",
+    });
+
     upsertMeta('meta[name="twitter:description"]', {
       name: "twitter:description",
       content: description,
+    });
+
+    upsertMeta('meta[name="twitter:url"]', {
+      name: "twitter:url",
+      content: absoluteUrl,
     });
 
     upsertMeta('meta[name="twitter:image"]', {
