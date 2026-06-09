@@ -26,8 +26,16 @@ body {
   margin: 0;
   min-width: 320px;
   background:
-    radial-gradient(circle at 12% 14%, rgba(79, 124, 255, 0.18), transparent 24%),
-    radial-gradient(circle at 86% 18%, rgba(61, 217, 255, 0.12), transparent 20%),
+    radial-gradient(
+      circle at 12% 14%,
+      rgba(79, 124, 255, 0.18),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 86% 18%,
+      rgba(61, 217, 255, 0.12),
+      transparent 20%
+    ),
     linear-gradient(180deg, #f8fbff 0%, #eef4ff 48%, #f7fafc 100%);
   font-family: "Manrope", "Segoe UI", sans-serif;
 }
@@ -40,6 +48,7 @@ a {
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
+select:focus-visible,
 textarea:focus-visible {
   outline: 3px solid rgba(61, 217, 255, 0.9);
   outline-offset: 3px;
@@ -47,6 +56,7 @@ textarea:focus-visible {
 
 button,
 input,
+select,
 textarea {
   font: inherit;
 }
@@ -114,8 +124,17 @@ textarea {
   }
 
   .field-shell input,
+  .field-shell select,
   .field-shell textarea {
     @apply w-full rounded-2xl border border-slate-300 bg-white/80 px-4 py-3 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-brand-500/50 focus:ring-2 focus:ring-brand-500/15 dark:border-white/10 dark:bg-slate-950/50 dark:text-white dark:placeholder:text-slate-500;
+  }
+
+  .field-error {
+    @apply mt-2 block text-sm text-rose-600 dark:text-rose-300;
+  }
+
+  .field-help {
+    @apply mt-2 block text-sm text-slate-500 dark:text-slate-400;
   }
 
   .sr-only {

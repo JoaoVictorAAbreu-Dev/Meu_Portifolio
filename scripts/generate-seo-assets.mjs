@@ -1,8 +1,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
+import { resolveSiteUrl } from "./resolve-site-url.mjs";
 
-const siteUrl = (
-  process.env.VITE_SITE_URL || "https://joaovictoraabreu-dev.github.io/Meu_Portifolio"
-).replace(/\/$/, "");
+const siteUrl = resolveSiteUrl(process.env);
 const pages = [
   "",
   "/#/projetos/motiva-orion",
@@ -19,7 +18,9 @@ writeFileSync(
   "utf8",
 );
 
-const urls = pages.map((path) => `  <url>\n    <loc>${siteUrl}${path}</loc>\n  </url>`).join("\n");
+const urls = pages
+  .map((path) => `  <url>\n    <loc>${siteUrl}${path}</loc>\n  </url>`)
+  .join("\n");
 
 writeFileSync(
   "public/sitemap.xml",

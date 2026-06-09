@@ -40,12 +40,15 @@ export function Header() {
           </div>
         </NavLink>
 
-        <nav className="hidden items-center gap-7 md:flex" aria-label="Navegacao principal">
+        <nav
+          className="hidden items-center gap-7 md:flex"
+          aria-label="Navegacao principal"
+        >
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="text-sm text-slate-600 transition hover:text-brand-700 dark:text-slate-300 dark:hover:text-cyan-300"
+              className="rounded-full px-3 py-2 text-sm text-slate-600 transition hover:bg-slate-100 hover:text-brand-700 dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-cyan-300"
             >
               {item.label}
             </a>
@@ -79,7 +82,7 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="rounded-2xl px-4 py-3 text-sm text-slate-600 transition hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-white"
+                className="rounded-2xl px-4 py-3 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-white"
               >
                 {item.label}
               </a>
