@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://meu-portifolio.vercel.app/sitemap.xml
+Sitemap: https://site-portifolio-lilac-alpha.vercel.app/sitemap.xml

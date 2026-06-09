@@ -9,7 +9,6 @@
     "providers:snapshot": "powershell -ExecutionPolicy Bypass -File ./scripts/provider-snapshot.ps1",
     "generate:seo-assets": "node scripts/generate-seo-assets.mjs",
     "build": "npm run generate:seo-assets && tsc --noEmit && vite build",
-    "build:github-pages": "node scripts/build-github-pages.mjs",
     "preview": "vite preview",
     "format": "prettier --write .",
     "format:check": "prettier --check .",

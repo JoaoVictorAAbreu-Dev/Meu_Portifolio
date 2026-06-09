@@ -18,17 +18,14 @@ npm run dev
 Use `.env.example` como base para um arquivo `.env` quando quiser customizar:
 
 - `VITE_SITE_URL`: URL pública usada em SEO e links canônicos. No Vercel, o projeto já tenta inferir essa URL automaticamente a partir do domínio do deploy.
-- `VITE_BASE_PATH`: base path do projeto. Em Vercel, o padrão deve ser `/`.
+- `VITE_BASE_PATH`: base path do projeto. Para Vercel, mantenha `/`.
 - `VITE_FORMSPREE_ENDPOINT`: endpoint do Formspree para ativar o formulário sem backend.
 
 ## Deploy na Vercel
 
-O projeto já está preparado para Vercel com:
+Deploy oficial atual:
 
-- build padrão em `npm run build`
-- SPA rewrite em [vercel.json](C:/Users/jv921/OneDrive/Área%20de%20Trabalho/site-portifolio/vercel.json)
-- compatibilidade com `BrowserRouter`
-- fallback automático de URL pública para SEO
+- [site-portifolio-lilac-alpha.vercel.app](https://site-portifolio-lilac-alpha.vercel.app)
 
 Configuração recomendada no painel da Vercel:
 

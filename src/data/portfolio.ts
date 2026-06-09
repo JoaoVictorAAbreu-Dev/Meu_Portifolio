@@ -29,7 +29,7 @@ export const seo = {
   description:
     "Portfólio de João Victor Alves de Abreu, estudante de Ciência da Computação na FIAP com foco em backend, FastAPI, machine learning e sistemas orientados a produto.",
   image: "/images/profile.webp",
-  url: "https://joaovictoraabreu-dev.github.io/Meu_Portifolio",
+  url: "https://site-portifolio-lilac-alpha.vercel.app",
 };
 
 export const navItems: NavItem[] = [
@@ -48,8 +48,14 @@ export const aboutPoints = [
 
 export const quickProfile = [
   { label: "Formação", value: "Ciência da Computação · FIAP" },
-  { label: "Foco atual", value: "Backend, FastAPI, Java e Machine Learning aplicado" },
-  { label: "Base técnica", value: "Python, APIs REST, dados, frontend React e arquitetura" },
+  {
+    label: "Foco atual",
+    value: "Backend, FastAPI, Java e Machine Learning aplicado",
+  },
+  {
+    label: "Base técnica",
+    value: "Python, APIs REST, dados, frontend React e arquitetura",
+  },
   { label: "Localização", value: "São Paulo, SP · Brasil" },
 ];
 
@@ -131,7 +137,7 @@ export const skillCategories: SkillCategory[] = [
         icon: FiCloud,
       },
       {
-        name: "Netlify · Vercel · GitHub Pages",
+        name: "Netlify · Vercel",
         level: "Uso prático",
         description:
           "Publicação de frontends, ajustes de base path, SEO básico e automação de deploy.",
@@ -190,7 +196,14 @@ export const projects: ProjectItem[] = [
       "Consolidar dados operacionais e geográficos em uma visão acionável para priorização de manutenção e conformidade regulatória.",
     architectureUsed:
       "Frontend React, backend FastAPI, persistência relacional, ETL de dados e motor determinístico de risco com apoio de ML.",
-    technologies: ["FastAPI", "Python", "React", "TypeScript", "PostgreSQL", "scikit-learn"],
+    technologies: [
+      "FastAPI",
+      "Python",
+      "React",
+      "TypeScript",
+      "PostgreSQL",
+      "scikit-learn",
+    ],
     challenges: [
       "Transformar dados heterogêneos em um fluxo operacional legível.",
       "Separar cálculo determinístico de risco da camada interpretativa.",
@@ -217,7 +230,14 @@ export const projects: ProjectItem[] = [
         "Backend FastAPI com autenticação, rotas de negócio e relatórios",
         "Frontend React orientado a centro de decisão",
       ],
-      technologies: ["Python", "FastAPI", "PostgreSQL", "React", "TypeScript", "scikit-learn"],
+      technologies: [
+        "Python",
+        "FastAPI",
+        "PostgreSQL",
+        "React",
+        "TypeScript",
+        "scikit-learn",
+      ],
       challenges: [
         "Definir critérios de risco sem depender de interpretação arbitrária",
         "Unificar visão técnica, executiva e regulatória",
@@ -258,7 +278,8 @@ export const projects: ProjectItem[] = [
     ],
     status: "Projeto público",
     imageLabel: "Climate analytics platform",
-    githubUrl: "https://github.com/JoaoVictorAAbreu-Dev/-PROJETO-ClimateMind-AI",
+    githubUrl:
+      "https://github.com/JoaoVictorAAbreu-Dev/-PROJETO-ClimateMind-AI",
     demoUrl: null,
     caseStudy: {
       context:
@@ -300,7 +321,13 @@ export const projects: ProjectItem[] = [
       "Permitir acesso rápido a times, jogadores, jogos e estatísticas mesmo quando uma API principal falha.",
     architectureUsed:
       "Serviços desacoplados para fontes externas, bot em Python e painel local para validação e observabilidade básica.",
-    technologies: ["Python", "discord.py", "FastAPI", "balldontlie", "TheSportsDB"],
+    technologies: [
+      "Python",
+      "discord.py",
+      "FastAPI",
+      "balldontlie",
+      "TheSportsDB",
+    ],
     challenges: [
       "Garantir resiliência com fallback entre APIs.",
       "Organizar comandos, serviços e utilitários de forma legível.",
@@ -327,7 +354,13 @@ export const projects: ProjectItem[] = [
         "Camada de serviços para múltiplas APIs externas",
         "Dashboard local para testes e inspeção de respostas",
       ],
-      technologies: ["Python", "discord.py", "FastAPI", "balldontlie", "TheSportsDB"],
+      technologies: [
+        "Python",
+        "discord.py",
+        "FastAPI",
+        "balldontlie",
+        "TheSportsDB",
+      ],
       challenges: [
         "Controlar erros de integração sem quebrar a experiência",
         "Padronizar respostas de fontes diferentes",
@@ -453,13 +486,21 @@ export const contactLinks: ContactLink[] = [
 ];
 
 export const footerLinks = [
-  { label: "GitHub", href: "https://github.com/JoaoVictorAAbreu-Dev", icon: FiGithub },
+  {
+    label: "GitHub",
+    href: "https://github.com/JoaoVictorAAbreu-Dev",
+    icon: FiGithub,
+  },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/jo%C3%A3ovictoraabreu",
     icon: FiLinkedin,
   },
-  { label: "Email", href: "mailto:joaovictoralvesabreu1@gmail.com", icon: FiMail },
+  {
+    label: "Email",
+    href: "mailto:joaovictoralvesabreu1@gmail.com",
+    icon: FiMail,
+  },
 ];
 
 export const sectionIcons = {
