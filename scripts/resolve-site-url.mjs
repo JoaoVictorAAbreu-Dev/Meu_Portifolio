@@ -1,5 +1,5 @@
 export const DEFAULT_SITE_URL =
-  "https://joaovictorabreu-jotas-projects-01e8afdf.vercel.app";
+  "https://joaovictorabreu-joaovictor-labs.vercel.app";
 
 function normalizeUrl(url) {
   return url.replace(/\/$/, "");

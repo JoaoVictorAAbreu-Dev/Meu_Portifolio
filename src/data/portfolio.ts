@@ -29,7 +29,7 @@ export const seo = {
   description:
     "Portfólio de João Victor Alves de Abreu, estudante de Ciência da Computação na FIAP com foco em backend, FastAPI, machine learning e sistemas orientados a produto.",
   image: "/images/profile.webp",
-  url: "https://joaovictorabreu-jotas-projects-01e8afdf.vercel.app",
+  url: "https://joaovictorabreu-joaovictor-labs.vercel.app",
 };
 
 export const navItems: NavItem[] = [

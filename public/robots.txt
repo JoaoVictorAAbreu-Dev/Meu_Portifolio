@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://joaovictorabreu-jotas-projects-01e8afdf.vercel.app/sitemap.xml
+Sitemap: https://joaovictorabreu-joaovictor-labs.vercel.app/sitemap.xml
